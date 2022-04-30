@@ -1,6 +1,4 @@
 var grid =['item1','item2','item3','item4','item5','item6','item7','item8','item9'];
-alert("layer 3")
-
 var arr1 = [];
 var arr2 = [];
 var arr3 = [];
@@ -26,6 +24,7 @@ var cpu = {
     Team : '',
     arr : []
 };
+document.getElementsById('reset').disabled = false;
 
 $('.cpu-score').html(cpuScore);
 $('.you-score').html(playerScore);
@@ -131,9 +130,10 @@ function findElement(check)
 
 function choiseCase(clicked_id)
 {
+    //attendre le tour du joueur pour pouvoir cliquer
     if(clicked % 2 == 0)
     {
-        $('#' + clicked_id).html('<p class = "animated bounceIn" style= "font-size:2em;color:#4286f4;" >'+player.Team +' </p>');
+        $('#' + clicked_id).html('<p class = "animated bounceInUp" style= "font-size:2em;color:#4286f4;" >'+player.Team +' </p>');
         grid.splice(grid.indexOf(clicked_id), 1);
         player.arr.push(clicked_id);
         findElement(player);
@@ -158,8 +158,8 @@ function computer()
       findElement(cpu);
       finished();
       $('#' +res).prop("disabled",true);
-      $('.player-turn').css({"border-bottom": "none"})
-        $('.cpu-turn').css({"border-bottom": "3px solid #e29120"})
+      $('.player-turn').css({"border-bottom": "3px solid #4286f4"})
+        $('.cpu-turn').css({"border-bottom": "none"})
 
         choice -= 1;
         clicked++;
@@ -174,6 +174,11 @@ function reset()
     player.arr = [];
     cpu.arr = [];
     grid =['item1','item2','item3','item4','item5','item6','item7','item8','item9'];
+    for(i=0;i<9;i++ )
+    {
+        document.getElementById(grid[i]).disabled = false;
+
+    }
     choice = 9;
     gameOver = false;
     cpuScore = 0;
@@ -181,12 +186,12 @@ function reset()
 
     $('.cpu-score').html(cpuScore);
     $('.you-score').html(playerScore);
+  
 
 }
 
 function winning(valeur)
 {
-    $('.layer2').show();
 
     if(clicked %2 == 0)
     {
@@ -199,13 +204,16 @@ function winning(valeur)
     else 
     {
      //   $('#' + valeur[0] +', #'+ valeur[1] + ', #' + valeur[2]).html('<p class = "animated bounceIn" >'+cpu.name+'</p>');
-     $('.layer2').css({"display ": "block"});
+     //$('.layer2').css({"display ": "block"});
     $(".layer2").show(); 
 
      cpuScore ++;
         $('.cpu-score').html(cpuScore);   
      }
      grid = [];
+     choice = 9
+     player.arr = [];
+     cpu.arr = [];
 }
 
 function choixEquipe(clicked_id)
@@ -221,7 +229,12 @@ function choixEquipe(clicked_id)
     else{
         cpu.Team='X';
     }
-    alert(cpu.Team)
+    grid =['item1','item2','item3','item4','item5','item6','item7','item8','item9'];
+    for(i=0;i<9;i++ )
+    {
+        document.getElementById(grid[i]).disabled = false;
+
+    }
 
 }
 
@@ -232,19 +245,32 @@ function winnershow()
     player.arr = [];
     cpu.arr = [];
     grid =['item1','item2','item3','item4','item5','item6','item7','item8','item9'];
+    for(i=0;i<9;i++ )
+    {
+        document.getElementById(grid[i]).disabled = false;
+
+    }
     choice = 9;
+    clicked = 0;
     gameOver = false;
 
 }
 
-function matchnull()
+function matchnul()
 {
     $('.layer3').css({"display ": "none"})
     $('.layer3').fadeOut(400);
     $('.grid-item').empty();
     player.arr = [];
     cpu.arr = [];
+
+    //vider les cases buttons
     grid =['item1','item2','item3','item4','item5','item6','item7','item8','item9'];
+    for(i=0;i<9;i++ )
+    {
+        document.getElementById(grid[i]).disabled = false;
+
+    }
     choice = 9;
     gameOver = false;
 
@@ -253,13 +279,12 @@ function matchnull()
 
 function on(val)
 {
+    $(".winner-name").html(val + ' a gagné!');
+
    // $('.layer2').css({"display ": "block"})
     $('.layer2').show();
 
-    $(".winner-name").html(val + ' a gagné!');
 }
-
-
 
  function finished()
 {

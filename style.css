@@ -4,6 +4,7 @@
     font-family: "Lobster";
     font-size: 5em;
     padding-bottom: 20px;
+    margin-left: -10%;
 }
 
 .layer {
@@ -182,7 +183,7 @@
     border-bottom: none;
 }
 
-.reset {
+#reset {
     margin-top: 30px;
     border: none;
     background-color: white;
@@ -235,4 +236,8 @@
     color: white;
     transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
+}
+
+button:disabled{
+    background-color: #000;
 }
