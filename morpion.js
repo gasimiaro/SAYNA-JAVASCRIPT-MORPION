@@ -1,4 +1,6 @@
 var grid =['item1','item2','item3','item4','item5','item6','item7','item8','item9'];
+alert("layer 3")
+
 var arr1 = [];
 var arr2 = [];
 var arr3 = [];
@@ -27,7 +29,7 @@ var cpu = {
 
 $('.cpu-score').html(cpuScore);
 $('.you-score').html(playerScore);
-alert("coucou");
+alert("hello")
 
 function findElement(check)
 {
@@ -165,7 +167,10 @@ function computer()
 
 function reset()
 {
+
     $('.grid-item').empty();
+    alert("coucou");
+
     player.arr = [];
     cpu.arr = [];
     grid =['item1','item2','item3','item4','item5','item6','item7','item8','item9'];
@@ -173,44 +178,55 @@ function reset()
     gameOver = false;
     cpuScore = 0;
     playerScore = 0;
+
     $('.cpu-score').html(cpuScore);
     $('.you-score').html(playerScore);
+
 }
 
 function winning(valeur)
 {
+    $('.layer2').show();
+
     if(clicked %2 == 0)
     {
-        $('#' + valeur[0] +', #'+ valeur[1] + ', #' + valeur[2]).html('<p class = "animated bounceIn" >'+player.name+'</p>');
-        playerScore ++;
-        $('.you-score').html(playerSore);
+//$('#' + valeur[0] +', #'+ valeur[1] + ', #' + valeur[2]).html('<p class = "animated bounceIn" >'+player.name+'</p>');
+  
+    $('.layer2').show();
+    playerScore ++;
+        $('.you-score').html(playerScore);
     }
     else 
     {
-        $('#' + valeur[0] +', #'+ valeur[1] + ', #' + valeur[2]).html('<p class = "animated bounceIn" >'+cpu.name+'</p>');
-        cpuScore ++;
-        $('.cpu-score').html(cpuSore);   
+     //   $('#' + valeur[0] +', #'+ valeur[1] + ', #' + valeur[2]).html('<p class = "animated bounceIn" >'+cpu.name+'</p>');
+     $('.layer2').css({"display ": "block"});
+    $(".layer2").show(); 
+
+     cpuScore ++;
+        $('.cpu-score').html(cpuScore);   
      }
      grid = [];
 }
 
-function choixEquipe()
+function choixEquipe(clicked_id)
 {
-    $('.layer1').removeClass(animated);
-    $('.layer1').fadeOut(400);
-    player.team = document.getElementById(clicked_id).innerHTML
-    if(player.team ==='X')
+    // $('.layer').removeClass(animated);
+  //  $('.layer').css({"display ": "none"})
+    $('.layer').fadeOut(400);
+    player.Team = document.getElementById(clicked_id).innerHTML
+    if(player.Team ==='X')
     {
-        cpu.team ='O';
+        cpu.Team ='O';
     }
     else{
-        cpu.team='X';
+        cpu.Team='X';
     }
+    alert(cpu.Team)
+
 }
 
 function winnershow()
 {
-    $('.layer2').removeClass(animated);
     $('.layer2').fadeOut(400);
     $('.grid-item').empty();
     player.arr = [];
@@ -223,7 +239,7 @@ function winnershow()
 
 function matchnull()
 {
-    $('.layer3').removeClass(animated);
+    $('.layer3').css({"display ": "none"})
     $('.layer3').fadeOut(400);
     $('.grid-item').empty();
     player.arr = [];
@@ -237,16 +253,13 @@ function matchnull()
 
 function on(val)
 {
-    $('.layer2').show;
-    $(".winner-name").html(val + 'a gagné!');
+   // $('.layer2').css({"display ": "block"})
+    $('.layer2').show();
+
+    $(".winner-name").html(val + ' a gagné!');
 }
 
 
-function on3()
-{
-    $('.layer3').removeClass(animated);
-    $(".layer3").show();
-}
 
  function finished()
 {
@@ -255,26 +268,10 @@ function on3()
         on3();
     }
 }
+alert("coucou");
 
-
-
-
-
-(function()
+function on3()
 {
-    const items =document.getElementsByClassName('grid-item');
-
-    function choiseCase(id)
-    {
-
-    }
-    function reset()
-    {
-        for(var i = 0;i<items.length;i++)
-        {
-            console.log(items[i]);
-            items[i].textContent = ""
-        }
-    }
-})();
-
+    $('.layer3').css({"display ": "block"});
+    $('.layer3').show();
+}
